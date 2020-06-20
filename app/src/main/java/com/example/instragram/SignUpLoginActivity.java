@@ -2,6 +2,7 @@ package com.example.instragram;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -62,7 +63,8 @@ public class SignUpLoginActivity extends AppCompatActivity {
                     public void done(ParseUser user, ParseException e) {
                         if ( user !=null && e == null){
                             FancyToast.makeText(SignUpLoginActivity.this, user.get("username") + " Log In successfully", FancyToast.LENGTH_LONG, FancyToast.SUCCESS,  false).show();
-
+                            Intent i = new Intent(SignUpLoginActivity.this,WelcomeActivity.class);
+                             startActivity(i);
                         }else {
                             FancyToast.makeText(SignUpLoginActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
