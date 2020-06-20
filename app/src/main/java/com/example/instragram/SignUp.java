@@ -2,6 +2,7 @@ package com.example.instragram;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class SignUp extends AppCompatActivity {
     private EditText Name, PunchSpeed, PunchPower, KickSpeed, KickPower;
-    private Button Save, getAllData;
+    private Button Save, getAllData,btnNewActivity;
     private TextView txtgetData;
     private String allKickBoxer;
 
@@ -37,6 +38,7 @@ public class SignUp extends AppCompatActivity {
         Save = findViewById(R.id.btnSave);
         txtgetData = findViewById(R.id.txtgetData);
         getAllData = findViewById(R.id.getAllData);
+        btnNewActivity = findViewById(R.id.btnNewActivity);
 
 
         txtgetData.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +95,9 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 allKickBoxer = "";
                 ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("KickBoxer");
+               //  queryAll.whereGreaterThan("punchPower",50);
+                //  queryAll.whereGreaterThanOrEqualTo("punchPower",95);
+
                 queryAll.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
@@ -116,7 +121,16 @@ public class SignUp extends AppCompatActivity {
         });
 
 
+        btnNewActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUp.this,SignUpLoginActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
+
 
 
 }
